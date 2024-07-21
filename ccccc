@@ -1,0 +1,32 @@
+local Players = game:GetService("Players")
+
+-- List of usernames or UserIds to kick
+local bannedPlayers = {
+    "dr_zzyy", -- Replace with the usernames or UserIds you want to kick
+    "",
+    -- You can also use UserIds like 123456789
+}
+
+-- Function to kick players
+local function kickPlayer(player)
+    player:Kick("your banned bitch ass nigga")
+end
+
+-- Check each player in the game
+local function checkPlayers()
+    for _, player in ipairs(Players:GetPlayers()) do
+        if table.find(bannedPlayers, player.Name) then
+            kickPlayer(player)
+        end
+    end
+end
+
+-- Connect to player added event
+Players.PlayerAdded:Connect(function(player)
+    if table.find(bannedPlayers, player.Name) then
+        kickPlayer(player)
+    end
+end)
+
+-- Check currently connected players
+checkPlayers()
